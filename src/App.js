@@ -1,22 +1,22 @@
-
 import { useEffect, useState } from "react";
-import { WebApp } from "@twa-dev/react";
 
 export default function TapGame() {
   const [tapCount, setTapCount] = useState(0);
   const [telegramUser, setTelegramUser] = useState(null);
 
   useEffect(() => {
-    WebApp.ready();
-    WebApp.expand();
-    setTelegramUser(WebApp.initDataUnsafe?.user);
+    if (window.Telegram && window.Telegram.WebApp) {
+      const WebApp = window.Telegram.WebApp;
+      WebApp.ready();
+      WebApp.expand();
+      setTelegramUser(WebApp.initDataUnsafe?.user);
+    }
   }, []);
 
   const handleTap = () => {
     const newCount = tapCount + 1;
     setTapCount(newCount);
 
-    // Optional: send to your backend every 10 taps
     if (newCount % 10 === 0 && telegramUser) {
       fetch("https://your-backend.com/api/tap", {
         method: "POST",
@@ -33,12 +33,21 @@ export default function TapGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white p-6">
-      <h1 className="text-2xl font-bold mb-4">💥 Tap to Earn NTC Coins!</h1>
-      <p className="text-lg mb-6">Taps: {tapCount}</p>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', justifyContent: 'center', alignItems: 'center', backgroundColor: '#111', color: '#fff' }}>
+      <h1>💥 Tap to Earn NTC Tokens!</h1>
+      <p>Taps: {tapCount}</p>
       <button
         onClick={handleTap}
-        className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full shadow-lg text-xl"
+        style={{
+          padding: '20px 40px',
+          fontSize: '1.5rem',
+          fontWeight: 'bold',
+          backgroundColor: 'gold',
+          color: 'black',
+          borderRadius: '9999px',
+          border: 'none',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
+        }}
       >
         TAP 💥
       </button>
