@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { WebApp } from "@twa-dev/sdk";
+import { WebApp } from "@twa-dev/react";
 
 export default function TapGame() {
   const [tapCount, setTapCount] = useState(0);
