@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Hamster from './icons/Hamster';
-import { binanceLogo, dailyCipher, dailyCombo, dailyReward, dollarCoin, hamsterCoin, mainCharacter } from './images';
+import { binanceLogo, dailyCipher, dailyCombo, dailyReward, dollarCoin,  mainCharacter } from './images';
 import Info from './icons/Info';
 import Settings from './icons/Settings';
-import Mine from './icons/Mine';
-import Friends from './icons/Friends';
-import Coins from './icons/Coins';
+
 
 const App: React.FC = () => {
   const levelNames = ["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Epic", "Legendary", "Master", "GrandMaster", "Lord"];
